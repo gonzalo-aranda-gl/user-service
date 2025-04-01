@@ -26,7 +26,7 @@ public class SingUpRequest {
   private String email;
 
   @NotNull(message = "The field password can't be null or empty")
-  @Pattern(regexp = "^(?=[a-z]*[A-Z][a-z]*$)(?=(.*\\\\d){1,2})[a-zA-Z\\\\d]{8,12}$",
+  @Pattern(regexp = "^(?=[^A-Z]*[A-Z][^A-Z]*$)(?=(.*\\\\d.*){1,2})(?=[a-z]).{8,12}$",
     message = "The password format is invalid")
   private String password;
 
