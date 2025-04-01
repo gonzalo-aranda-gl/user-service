@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: user-service
+    description: User authentication Service
+    author: Gonzalo Aranda
+    version: 1.0
+  profiles:
+    active: local
