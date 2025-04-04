@@ -1,7 +1,7 @@
 CREATE TABLE user (
-    id VARCHAR(36) NOT NULL,
+    id VARCHAR(36) NOT NULL UNIQUE,
     name VARCHAR(255),
-    email VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(12) NOT NULL,
     created TIMESTAMP,
     updated TIMESTAMP,
@@ -9,7 +9,7 @@ CREATE TABLE user (
 );
 
 CREATE TABLE phone (
-    id VARCHAR(36) NOT NULL,
+    id VARCHAR(36) NOT NULL UNIQUE,
     number int,
     city_code VARCHAR(36),
     country_code VARCHAR(36),
