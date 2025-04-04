@@ -1,5 +1,6 @@
 package com.core.user_service.api.controller;
 
+import com.core.user_service.dto.requests.LoginRequest;
 import com.core.user_service.dto.requests.SingUpRequest;
 import com.core.user_service.dto.responses.LoginResponse;
 import com.core.user_service.dto.responses.UserResponse;
@@ -34,12 +35,11 @@ public class UserController {
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping(value = "/login",
-    produces = { "application/json" })
-  public ResponseEntity<LoginResponse> login(@RequestParam(value = "email") String email,
-                                             @RequestParam(value = "password") String password,
-                                             @RequestParam(value = "token") String token) {
-    LoginResponse response = userService.login();
+  @PostMapping(value = "/login",
+    produces = { "application/json" },
+    consumes = { "application/json" })
+  public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
+    LoginResponse response = userService.login(request);
     return ResponseEntity.ok(response);
   }
 

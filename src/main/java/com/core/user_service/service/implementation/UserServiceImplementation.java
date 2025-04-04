@@ -2,6 +2,7 @@ package com.core.user_service.service.implementation;
 
 import com.core.user_service.api.repository.PhoneRepository;
 import com.core.user_service.api.repository.UserRepository;
+import com.core.user_service.dto.requests.LoginRequest;
 import com.core.user_service.dto.requests.SingUpRequest;
 import com.core.user_service.dto.responses.LoginResponse;
 import com.core.user_service.dto.responses.UserResponse;
@@ -25,7 +26,7 @@ public class UserServiceImplementation implements UserService {
   }
 
   @Override
-  public LoginResponse login() {
+  public LoginResponse login(LoginRequest loginRequest) {
     return null;
   }
 }
