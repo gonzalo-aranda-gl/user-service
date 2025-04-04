@@ -8,7 +8,6 @@ import com.core.user_service.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,16 +29,18 @@ public class UserController {
   @PostMapping(value = "/sing-up",
     produces = { "application/json" },
     consumes = { "application/json" })
-  public ResponseEntity<UserResponse> singUp(@Valid @RequestBody SingUpRequest request) {
-    UserResponse response = userService.singUp(request);
+  public ResponseEntity<UserResponse> singUp(@Valid @RequestBody SingUpRequest request,
+                                             @RequestParam(value = "requestId") String requestId) {
+    UserResponse response = userService.singUp(request, requestId);
     return ResponseEntity.ok(response);
   }
 
   @PostMapping(value = "/login",
     produces = { "application/json" },
     consumes = { "application/json" })
-  public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
-    LoginResponse response = userService.login(request);
+  public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request,
+                                             @RequestParam(value = "requestId") String requestId) {
+    LoginResponse response = userService.login(request, requestId);
     return ResponseEntity.ok(response);
   }
 

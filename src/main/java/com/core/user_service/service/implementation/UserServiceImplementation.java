@@ -1,5 +1,6 @@
 package com.core.user_service.service.implementation;
 
+import com.core.user_service.api.exception.UserAlreadyExistsException;
 import com.core.user_service.api.repository.PhoneRepository;
 import com.core.user_service.api.repository.UserRepository;
 import com.core.user_service.dto.requests.LoginRequest;
@@ -21,12 +22,21 @@ public class UserServiceImplementation implements UserService {
   private final PhoneRepository phoneRepository;
 
   @Override
-  public UserResponse singUp(SingUpRequest singUpRequest) {
+  public UserResponse singUp(SingUpRequest request, String requestId) {
+    log.info("Processing user sing-up request, requestId: {}", requestId);
+    if (userAlreadyExists(request.getEmail())) {
+      throw new UserAlreadyExistsException("An user for this email already exists");
+    }
     return null;
   }
 
   @Override
-  public LoginResponse login(LoginRequest loginRequest) {
+  public LoginResponse login(LoginRequest request, String requestId) {
+    log.info("Processing user login request, requestId: {}", requestId);
     return null;
+  }
+
+  private boolean userAlreadyExists(String email) {
+    return this.userRepository.findUserByEmail(email).isPresent();
   }
 }
