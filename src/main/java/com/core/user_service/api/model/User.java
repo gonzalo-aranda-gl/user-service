@@ -37,6 +37,8 @@ public class User {
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Phone> phones;
 
+  private String isActive;
+
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yy HH:mm:ss")
   private LocalDateTime created;
 

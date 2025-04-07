@@ -40,4 +40,6 @@ server:
 
 security:
   encryption:
-    key: "testKey7"
+    key: "ecf0cfb1-22d0-421e-9761-f8c6a67d492a"
+  jwt:
+    secret-key: "a464424b-4d34-4d81-8fda-9cf61cd2ec99"

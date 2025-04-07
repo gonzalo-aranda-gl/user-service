@@ -25,6 +25,6 @@ public class UserResponse {
 
   private String token;
 
-  private boolean isActive;
+  private String isActive;
 
 }

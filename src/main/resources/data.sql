@@ -3,6 +3,7 @@ CREATE TABLE user (
     name VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
+    is_active VARCHAR(5),
     created TIMESTAMP,
     updated TIMESTAMP,
     PRIMARY KEY(id)

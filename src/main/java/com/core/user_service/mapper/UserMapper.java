@@ -18,15 +18,14 @@ public interface UserMapper {
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
   @Mapping(target = "id", expression = "java(generateId())")
+  @Mapping(target = "isActive", ignore = true)
   @Mapping(target = "created", ignore = true)
   @Mapping(target = "updated", ignore = true)
   User mapUserRequestToEntity(SignUpRequest request);
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-  @Mapping(target = "created", source = "created")
   @Mapping(target = "lastLogin", ignore = true)
   @Mapping(target = "token", ignore = true)
-  @Mapping(target = "isActive", ignore = true)
   UserResponse mapUserEntityToUserResponse(User request);
 
   @Mapping(target = "id", expression = "java(generateId())")

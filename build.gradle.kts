@@ -15,6 +15,7 @@ java {
 
 val springdocVersion by extra("1.6.7")
 val mapstructVersion by extra("1.6.3")
+val jwtVersion by extra("0.11.5")
 
 configurations {
 	compileOnly {
@@ -34,6 +35,9 @@ dependencies {
 	implementation ("org.hibernate:hibernate-core")
 	implementation("org.springdoc:springdoc-openapi-ui:${springdocVersion}")
 	implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+	implementation("io.jsonwebtoken:jjwt-api:${jwtVersion}")
+	implementation("io.jsonwebtoken:jjwt-impl:${jwtVersion}")
+	implementation("io.jsonwebtoken:jjwt-jackson:${jwtVersion}")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")
