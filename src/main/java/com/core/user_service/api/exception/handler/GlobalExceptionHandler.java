@@ -1,6 +1,7 @@
 package com.core.user_service.api.exception.handler;
 
 import com.core.user_service.api.exception.UserAlreadyExistsException;
+import com.core.user_service.api.exception.UserNotFoundException;
 import com.core.user_service.dto.responses.Error;
 import com.core.user_service.dto.responses.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -47,6 +48,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(UserAlreadyExistsException.class)
   protected ResponseEntity<Object> handleUserAlreadyExists(UserAlreadyExistsException ex) {
+    log.error("Handling UserAlreadyExistsException with message: {}", ex.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+      buildErrorResponse(HttpStatus.BAD_REQUEST.value(), List.of(ex.getMessage()))
+    );
+  }
+
+  @ExceptionHandler(UserNotFoundException.class)
+  protected ResponseEntity<Object> UserNotFoundException(UserNotFoundException ex) {
     log.error("Handling UserAlreadyExistsException with message: {}", ex.getMessage());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
       buildErrorResponse(HttpStatus.BAD_REQUEST.value(), List.of(ex.getMessage()))

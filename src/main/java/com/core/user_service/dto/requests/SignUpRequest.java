@@ -1,6 +1,6 @@
 package com.core.user_service.dto.requests;
 
-import com.core.user_service.dto.Phone;
+import com.core.user_service.dto.PhoneDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,7 +19,7 @@ import static com.core.user_service.constants.RegularExpressions.PASSWORD_FORMAT
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class SingUpRequest {
+public class SignUpRequest {
 
   private String name;
 
@@ -31,5 +31,5 @@ public class SingUpRequest {
   @Pattern(regexp = PASSWORD_FORMAT, message = "The password format is invalid")
   private String password;
 
-  private List<@Valid Phone> phones;
+  private List<@Valid PhoneDto> phones;
 }

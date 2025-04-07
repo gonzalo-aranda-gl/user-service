@@ -1,7 +1,7 @@
 package com.core.user_service.api.controller;
 
 import com.core.user_service.dto.requests.LoginRequest;
-import com.core.user_service.dto.requests.SingUpRequest;
+import com.core.user_service.dto.requests.SignUpRequest;
 import com.core.user_service.dto.responses.LoginResponse;
 import com.core.user_service.dto.responses.UserResponse;
 import com.core.user_service.service.UserService;
@@ -26,12 +26,12 @@ public class UserController {
     this.userService = userService;
   }
 
-  @PostMapping(value = "/sing-up",
+  @PostMapping(value = "/sign-up",
     produces = { "application/json" },
     consumes = { "application/json" })
-  public ResponseEntity<UserResponse> singUp(@Valid @RequestBody SingUpRequest request,
+  public ResponseEntity<UserResponse> signUp(@Valid @RequestBody SignUpRequest request,
                                              @RequestParam(value = "requestId") String requestId) {
-    UserResponse response = userService.singUp(request, requestId);
+    UserResponse response = userService.signUp(request, requestId);
     return ResponseEntity.ok(response);
   }
 

@@ -2,7 +2,7 @@ CREATE TABLE user (
     id VARCHAR(36) NOT NULL UNIQUE,
     name VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
-    password VARCHAR(12) NOT NULL,
+    password VARCHAR NOT NULL,
     created TIMESTAMP,
     updated TIMESTAMP,
     PRIMARY KEY(id)

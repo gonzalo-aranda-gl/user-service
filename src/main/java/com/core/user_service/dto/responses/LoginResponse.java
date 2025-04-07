@@ -1,6 +1,6 @@
 package com.core.user_service.dto.responses;
 
-import com.core.user_service.dto.Phone;
+import com.core.user_service.dto.PhoneDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +35,5 @@ public class LoginResponse {
 
   private String password;
 
-  private List<Phone> phones;
+  private List<PhoneDto> phoneDtos;
 }
