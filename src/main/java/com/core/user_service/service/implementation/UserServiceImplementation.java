@@ -66,6 +66,7 @@ public class UserServiceImplementation implements UserService {
     tokenService.validateToken(request.getToken(), user.getEmail());
     LoginResponse response = userMapper.mapUserEntityToLoginResponse(updateUser(user, requestId));
     response.setPhones(getUserPhones(user));
+    response.setToken(tokenService.generateToken(user.getEmail()));
     return response;
   }
 
