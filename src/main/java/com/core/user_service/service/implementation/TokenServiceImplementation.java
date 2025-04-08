@@ -4,16 +4,17 @@ import com.core.user_service.api.exception.InvalidTokenException;
 import com.core.user_service.service.TokenService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
-import java.security.SignatureException;
 import java.util.Date;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Slf4j
@@ -21,26 +22,30 @@ public class TokenServiceImplementation implements TokenService {
 
     @Value("${security.jwt.secret-key}")
     private String secretKey;
+    private final Map<String, String> tokenStorage = new ConcurrentHashMap<>();
 
     public String generateToken(String username) {
         log.info("Generating token for user: {}", username);
-        return Jwts.builder()
-                .setSubject(username)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
-                .signWith(getSigninKey())
-                .compact();
+        String token = Jwts.builder()
+          .setSubject(username)
+          .setIssuedAt(new Date())
+          .setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
+          .signWith(getSigninKey())
+          .compact();
+
+        tokenStorage.put(username, token);
+
+        return token;
     }
 
     public void validateToken(String token, String username) {
-        try {
-            if ((username.equals(extractUsername(token)) && !isTokenExpired(token))) {
-                log.info("Token validated for user: {}", username);
-            }
-        } catch (Exception ex) {
-            log.error("Invalid token with message: {},", ex.getMessage());
-            throw new InvalidTokenException("The provided token is invalid");
+        String storedToken = tokenStorage.get(username);
+        if (Strings.isBlank(storedToken)|| !storedToken.equals(token) || isTokenExpired(token)) {
+            log.error("Token is invalid or expired for user: {}", username);
+            throw new InvalidTokenException("The provided token is invalid or expired");
         }
+
+        log.info("Token validated for user: {}", username);
     }
 
     private Key getSigninKey() {

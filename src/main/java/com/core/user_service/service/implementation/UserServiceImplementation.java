@@ -94,14 +94,12 @@ public class UserServiceImplementation implements UserService {
     user.setLastLogin(user.getCreated());
     setEncryptedPassword(user);
     user.setIsActive(UserStatus.ACTIVE.getIsActive());
-    user.setToken(tokenService.generateToken(user.getEmail()));
     return this.userRepository.save(user);
   }
 
   private User updateUser(User user, String requestId) {
     log.info("Updating user: {}, for requestId: {}", user.getEmail(), requestId);
     user.setLastLogin(LocalDateTime.now());
-    user.setToken(tokenService.generateToken(user.getEmail()));
     user.setUpdated(LocalDateTime.now());
     return this.userRepository.save(user);
   }

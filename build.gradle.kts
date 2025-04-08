@@ -38,6 +38,7 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:${jwtVersion}")
 	implementation("io.jsonwebtoken:jjwt-impl:${jwtVersion}")
 	implementation("io.jsonwebtoken:jjwt-jackson:${jwtVersion}")
+	implementation ("org.springframework.boot:spring-boot-starter-security")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")

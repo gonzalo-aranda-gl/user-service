@@ -4,7 +4,6 @@ CREATE TABLE user (
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
     is_active VARCHAR(5),
-    token VARCHAR NOT NULL,
     last_login TIMESTAMP,
     created TIMESTAMP,
     updated TIMESTAMP,
