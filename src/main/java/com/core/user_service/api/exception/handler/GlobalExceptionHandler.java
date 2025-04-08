@@ -59,7 +59,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(UserNotFoundException.class)
   protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
     log.error("Handling UserNotFoundException with message: {}", ex.getMessage());
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).body(
       buildErrorResponse(HttpStatus.NO_CONTENT.value(), List.of(ex.getMessage()))
     );
   }
@@ -67,7 +67,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(InvalidPasswordException.class)
   protected ResponseEntity<Object> handleInvalidPasswordException(InvalidPasswordException ex) {
     log.error("Handling InvalidPasswordException with message: {}", ex.getMessage());
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+    return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
             buildErrorResponse(HttpStatus.UNAUTHORIZED.value(), List.of(ex.getMessage()))
     );
   }
@@ -75,7 +75,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(InvalidTokenException.class)
   protected ResponseEntity<Object> handleInvalidTokenException(InvalidTokenException ex) {
     log.error("Handling InvalidTokenException with message: {}", ex.getMessage());
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+    return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
             buildErrorResponse(HttpStatus.FORBIDDEN.value(), List.of(ex.getMessage()))
     );
   }
