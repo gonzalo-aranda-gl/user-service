@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,13 +22,13 @@ public class SignUpRequest {
 
   private String name;
 
-  @NotNull(message = "The field email can't be null or empty")
+  @NotNull(message = "The email can't be null or empty")
   @Email(regexp = EMAIL_FORMAT, message = "The email format is invalid")
   private String email;
 
-  @NotNull(message = "The field password can't be null or empty")
+  @NotNull(message = "The password can't be null or empty")
   @Pattern(regexp = PASSWORD_FORMAT, message = "The password format is invalid")
   private String password;
 
-  private List<@Valid PhoneDto> phones;
+  private List<PhoneDto> phones;
 }

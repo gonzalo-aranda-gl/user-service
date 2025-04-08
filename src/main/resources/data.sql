@@ -4,6 +4,8 @@ CREATE TABLE user (
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
     is_active VARCHAR(5),
+    token VARCHAR NOT NULL,
+    last_login TIMESTAMP,
     created TIMESTAMP,
     updated TIMESTAMP,
     PRIMARY KEY(id)
@@ -12,7 +14,7 @@ CREATE TABLE user (
 CREATE TABLE phone (
     id VARCHAR(36) NOT NULL UNIQUE,
     number int,
-    city_code VARCHAR(36),
+    city_code int,
     country_code VARCHAR(36),
     user_id VARCHAR(36),
     created TIMESTAMP,

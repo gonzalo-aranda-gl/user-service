@@ -1,5 +1,7 @@
 package com.core.user_service.api.exception.handler;
 
+import com.core.user_service.api.exception.InvalidPasswordException;
+import com.core.user_service.api.exception.InvalidTokenException;
 import com.core.user_service.api.exception.UserAlreadyExistsException;
 import com.core.user_service.api.exception.UserNotFoundException;
 import com.core.user_service.dto.responses.Error;
@@ -55,10 +57,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
   }
 
   @ExceptionHandler(UserNotFoundException.class)
-  protected ResponseEntity<Object> UserNotFoundException(UserNotFoundException ex) {
-    log.error("Handling UserAlreadyExistsException with message: {}", ex.getMessage());
+  protected ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex) {
+    log.error("Handling UserNotFoundException with message: {}", ex.getMessage());
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-      buildErrorResponse(HttpStatus.BAD_REQUEST.value(), List.of(ex.getMessage()))
+      buildErrorResponse(HttpStatus.NO_CONTENT.value(), List.of(ex.getMessage()))
+    );
+  }
+
+  @ExceptionHandler(InvalidPasswordException.class)
+  protected ResponseEntity<Object> handleInvalidPasswordException(InvalidPasswordException ex) {
+    log.error("Handling InvalidPasswordException with message: {}", ex.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+            buildErrorResponse(HttpStatus.UNAUTHORIZED.value(), List.of(ex.getMessage()))
+    );
+  }
+
+  @ExceptionHandler(InvalidTokenException.class)
+  protected ResponseEntity<Object> handleInvalidTokenException(InvalidTokenException ex) {
+    log.error("Handling InvalidTokenException with message: {}", ex.getMessage());
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+            buildErrorResponse(HttpStatus.FORBIDDEN.value(), List.of(ex.getMessage()))
     );
   }
 

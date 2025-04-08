@@ -7,10 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import static com.core.user_service.constants.RegularExpressions.EMAIL_FORMAT;
-import static com.core.user_service.constants.RegularExpressions.PASSWORD_FORMAT;
 
 @Data
 @Builder
@@ -19,14 +17,14 @@ import static com.core.user_service.constants.RegularExpressions.PASSWORD_FORMAT
 public class LoginRequest {
 
 
-  @NotNull(message = "The field email can't be null or empty")
+  @NotNull(message = "The email can't be null or empty")
   @Email(regexp = EMAIL_FORMAT, message = "The email format is invalid")
   private String email;
 
-  @NotNull(message = "The field password can't be null or empty")
-  @Pattern(regexp = PASSWORD_FORMAT, message = "The password format is invalid")
+  @NotNull(message = "The password can't be null or empty")
   private String password;
 
+  @NotNull(message = "The token can't be null or empty")
   private String token;
 
 }

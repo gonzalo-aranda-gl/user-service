@@ -27,9 +27,9 @@ public class Phone {
   @NotNull
   private String id;
 
-  private int number;
+  private long number;
 
-  private String cityCode;
+  private int cityCode;
 
   private String countryCode;
 

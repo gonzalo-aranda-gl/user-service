@@ -39,6 +39,11 @@ public class User {
 
   private String isActive;
 
+  private String token;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yy HH:mm:ss")
+  private LocalDateTime lastLogin;
+
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yy HH:mm:ss")
   private LocalDateTime created;
 
