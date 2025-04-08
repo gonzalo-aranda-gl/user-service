@@ -47,7 +47,9 @@ public class UserServiceImplementation implements UserService {
     }
     User user = userMapper.mapUserRequestToEntity(request);
     setUserPhones(request, user);
-    return userMapper.mapUserEntityToUserResponse(saveUser(user, requestId));
+    UserResponse response =  userMapper.mapUserEntityToUserResponse(saveUser(user, requestId));
+    response.setToken(tokenService.generateToken(user.getEmail()));
+    return response;
   }
   @Override
   public LoginResponse login(LoginRequest request, String requestId) {

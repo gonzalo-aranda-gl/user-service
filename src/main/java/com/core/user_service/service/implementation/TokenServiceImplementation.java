@@ -2,6 +2,7 @@ package com.core.user_service.service.implementation;
 
 import com.core.user_service.api.exception.InvalidTokenException;
 import com.core.user_service.service.TokenService;
+import com.core.user_service.utils.TokenStorage;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -13,8 +14,6 @@ import org.springframework.stereotype.Service;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Key;
 import java.util.Date;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 @Slf4j
@@ -22,7 +21,6 @@ public class TokenServiceImplementation implements TokenService {
 
     @Value("${security.jwt.secret-key}")
     private String secretKey;
-    private final Map<String, String> tokenStorage = new ConcurrentHashMap<>();
 
     public String generateToken(String username) {
         log.info("Generating token for user: {}", username);
@@ -33,13 +31,13 @@ public class TokenServiceImplementation implements TokenService {
           .signWith(getSigninKey())
           .compact();
 
-        tokenStorage.put(username, token);
+        TokenStorage.saveToken(username, token);
 
         return token;
     }
 
     public void validateToken(String token, String username) {
-        String storedToken = tokenStorage.get(username);
+        String storedToken = TokenStorage.getToken(username);
         if (Strings.isBlank(storedToken)|| !storedToken.equals(token) || isTokenExpired(token)) {
             log.error("Token is invalid or expired for user: {}", username);
             throw new InvalidTokenException("The provided token is invalid or expired");
