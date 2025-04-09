@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "c85a30aa-3a36-47b8-8af2-900f81e8ed49",
+		"name": "User service",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28160230",
+		"_collection_link": "https://planetary-equinox-681621-1.postman.co/workspace/Convera-TPH-Workspace~164dfc1a-e3b0-46f2-8e1a-3774324d3ac7/collection/28160230-c85a30aa-3a36-47b8-8af2-900f81e8ed49?action=share&source=collection_link&creator=28160230"
+	},
+	"item": [
+		{
+			"name": "sign-up",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Hsawano\",\r\n  \"email\": \"Hswano@gmail.com\",\r\n  \"password\": \"oEnrd5wyf1\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": 1123456789,\r\n      \"cityCode\": 1,\r\n      \"countryCode\": \"abcd\"\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user-service/sign-up?requestId={{$guid}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user-service",
+						"sign-up"
+					],
+					"query": [
+						{
+							"key": "requestId",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"Hswano@gmail.com\",\r\n  \"password\": \"oEnrd5wyf1\",\r\n  \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJIc3dhbm9AZ21haWwuY29tIiwiaWF0IjoxNzQ0MDkwNDc0LCJleHAiOjE3NDQwOTIyNzR9.yjzURE1_yqF8lwzu7wPXaKinXlpCb8W3tgJkfrg-504\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/user-service/login?requestId={{$guid}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"user-service",
+						"login"
+					],
+					"query": [
+						{
+							"key": "requestId",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
