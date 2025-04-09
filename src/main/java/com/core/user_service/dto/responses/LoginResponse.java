@@ -2,7 +2,6 @@ package com.core.user_service.dto.responses;
 
 import com.core.user_service.dto.PhoneDto;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

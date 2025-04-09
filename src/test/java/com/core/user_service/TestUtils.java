@@ -7,7 +7,6 @@ import com.core.user_service.dto.requests.SignUpRequest;
 import lombok.experimental.UtilityClass;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 import static com.core.user_service.TestConstants.OK_TOKEN;

@@ -17,6 +17,7 @@ val springdocVersion by extra("1.6.7")
 val mapstructVersion by extra("1.6.3")
 val jwtVersion by extra("0.11.5")
 val gsonVersion by extra("2.12.1")
+val lombokVersion by extra("1.18.26")
 
 configurations {
 	compileOnly {
@@ -40,13 +41,16 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-impl:${jwtVersion}")
 	implementation("io.jsonwebtoken:jjwt-jackson:${jwtVersion}")
 	implementation("com.google.code.gson:gson:${gsonVersion}")
-	testImplementation("org.projectlombok:lombok:1.18.26")
+
+	testImplementation("org.projectlombok:lombok:${lombokVersion}")
+	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
 	annotationProcessor("org.projectlombok:lombok")
 	annotationProcessor ("org.mapstruct:mapstruct-processor:${mapstructVersion}")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 tasks.withType<JavaCompile> {
