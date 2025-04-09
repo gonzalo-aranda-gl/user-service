@@ -153,4 +153,15 @@ class UserServiceTest {
       () -> this.userService.login(request, TEST_REQUEST_ID));
   }
 
+  @Test
+  void decryptionException() throws InvalidAlgorithmParameterException, NoSuchPaddingException, IllegalBlockSizeException,
+    NoSuchAlgorithmException, BadPaddingException, InvalidKeyException {
+    LoginRequest request = TestUtils.createLoginRequest();
+    User user = TestUtils.createUser();
+    when(this.userRepository.findUserByEmail(request.getEmail())).thenReturn(Optional.of(user));
+    when(this.encryptionService.decryptPassword(anyString())).thenThrow(EncryptionErrorException.class);
+    assertThrows(EncryptionErrorException.class,
+      () -> this.userService.login(request, TEST_REQUEST_ID));
+  }
+
 }
