@@ -31,7 +31,7 @@ public class UserController {
     consumes = { "application/json" })
   public ResponseEntity<UserResponse> signUp(@Valid @RequestBody SignUpRequest request,
                                              @RequestParam(value = "requestId") String requestId) {
-    UserResponse response = userService.signUp(request, requestId);
+    UserResponse response = this.userService.signUp(request, requestId);
     return ResponseEntity.ok(response);
   }
 
@@ -40,7 +40,7 @@ public class UserController {
     consumes = { "application/json" })
   public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request,
                                              @RequestParam(value = "requestId") String requestId) {
-    LoginResponse response = userService.login(request, requestId);
+    LoginResponse response = this.userService.login(request, requestId);
     return ResponseEntity.ok(response);
   }
 

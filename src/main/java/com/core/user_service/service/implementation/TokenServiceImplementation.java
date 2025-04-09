@@ -50,7 +50,7 @@ public class TokenServiceImplementation implements TokenService {
     }
 
     private Key getSigninKey() {
-        return new SecretKeySpec(secretKey.getBytes(), SignatureAlgorithm.HS256.getJcaName());
+        return new SecretKeySpec(this.secretKey.getBytes(), SignatureAlgorithm.HS256.getJcaName());
     }
 
     private boolean isTokenExpired(String token) {

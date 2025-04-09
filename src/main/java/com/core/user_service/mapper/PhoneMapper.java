@@ -12,6 +12,7 @@ public interface PhoneMapper {
 
   @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
   @Mapping(target = "id", ignore = true)
+  @Mapping(target = "user", ignore = true)
   @Mapping(target = "created", ignore = true)
   @Mapping(target = "updated", ignore = true)
   Phone mapPhoneDtoToEntity(PhoneDto phoneDto);

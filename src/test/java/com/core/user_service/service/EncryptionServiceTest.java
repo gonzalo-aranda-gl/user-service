@@ -23,7 +23,7 @@ class EncryptionServiceTest {
   @Test
   void encryptPasswordTest(){
     assertDoesNotThrow(() -> {
-      String cipherPassword = encryptionService.encryptPassword(TEST_PASSWORD);
+      String cipherPassword = this.encryptionService.encryptPassword(TEST_PASSWORD);
       assertFalse(Strings.isBlank(cipherPassword));
     } );
   }
@@ -31,7 +31,7 @@ class EncryptionServiceTest {
   @Test
   void decryptPasswordTest(){
     assertDoesNotThrow(() -> {
-      String password = encryptionService.decryptPassword(CIPHER_PASSWORD);
+      String password = this.encryptionService.decryptPassword(CIPHER_PASSWORD);
       assertFalse(Strings.isBlank(password));
       assertEquals(TEST_PASSWORD, password);
     } );

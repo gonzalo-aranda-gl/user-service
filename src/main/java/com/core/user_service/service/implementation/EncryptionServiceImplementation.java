@@ -57,7 +57,7 @@ public class EncryptionServiceImplementation implements EncryptionService {
 
     private SecretKeySpec generateAesKey() throws NoSuchAlgorithmException {
         MessageDigest sha256 = MessageDigest.getInstance(SHA_CRYPT);
-        byte[] keyBytes = sha256.digest(encryptionKey.getBytes(StandardCharsets.UTF_8));
+        byte[] keyBytes = sha256.digest(this.encryptionKey.getBytes(StandardCharsets.UTF_8));
         return new SecretKeySpec(keyBytes, AES_ALGORITHM);
     }
 }

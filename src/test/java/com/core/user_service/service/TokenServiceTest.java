@@ -24,20 +24,20 @@ class TokenServiceTest {
 
   @Test
   void generateTokenTest() {
-    String token = tokenService.generateToken(TEST_USER_EMAIL);
+    String token = this.tokenService.generateToken(TEST_USER_EMAIL);
     assertFalse(Strings.isBlank(token));
     assertEquals(TEST_USER_EMAIL, tokenService.extractUsername(token));
   }
 
   @Test
   void validateTokenTest() {
-    String token = tokenService.generateToken(TEST_USER_EMAIL);
+    String token = this.tokenService.generateToken(TEST_USER_EMAIL);
     assertDoesNotThrow(() -> tokenService.validateToken(token, TEST_USER_EMAIL));
   }
 
   @Test
   void validateTokenErrorTest() {
     assertThrows(InvalidTokenException.class,
-      () -> tokenService.validateToken(INVALID_TOKEN, TEST_USER_EMAIL));
+      () -> this.tokenService.validateToken(INVALID_TOKEN, TEST_USER_EMAIL));
   }
 }
