@@ -42,16 +42,15 @@ public class TokenServiceImplementation implements TokenService {
             log.error("Token is invalid or expired for user: {}", username);
             throw new InvalidTokenException("The provided token is invalid or expired");
         }
-
         log.info("Token validated for user: {}", username);
+    }
+
+    public String extractUsername(String token) {
+        return extractClaims(token).getSubject();
     }
 
     private Key getSigninKey() {
         return new SecretKeySpec(secretKey.getBytes(), SignatureAlgorithm.HS256.getJcaName());
-    }
-
-    private String extractUsername(String token) {
-        return extractClaims(token).getSubject();
     }
 
     private boolean isTokenExpired(String token) {

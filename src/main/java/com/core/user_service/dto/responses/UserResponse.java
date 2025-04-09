@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -15,7 +14,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UserResponse {
 
-  private UUID id;
+  private String id;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yy HH:mm:ss")
   private LocalDateTime created;

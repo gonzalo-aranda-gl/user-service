@@ -1,0 +1,12 @@
+{
+  "name": "Hsawano",
+  "email": "Hswano@gmail.com",
+  "password": "oEnrd5wyf1",
+  "phones": [
+    {
+      "number": 1123456789,
+      "cityCode": 1,
+      "countryCode": "abcd"
+    }
+  ]
+}

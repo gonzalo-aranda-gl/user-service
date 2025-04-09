@@ -20,7 +20,7 @@ public class EncryptionServiceImplementation implements EncryptionService {
     @Value("${security.encryption.key}")
     public String encryptionKey;
 
-    public String encryptPassword(String plainText) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public String encryptPassword(String password) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
         byte[] iv = new byte[IV_LENGTH_ENCRYPT];
         SecureRandom secureRandom = new SecureRandom();
@@ -30,7 +30,7 @@ public class EncryptionServiceImplementation implements EncryptionService {
         GCMParameterSpec gcmSpec = new GCMParameterSpec(TAG_LENGTH_ENCRYPT * 8, iv);
         cipher.init(Cipher.ENCRYPT_MODE, generateAesKey(), gcmSpec);
 
-        byte[] encryptedBytes = cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8));
+        byte[] encryptedBytes = cipher.doFinal(password.getBytes(StandardCharsets.UTF_8));
 
         byte[] combinedIvAndCipherText = new byte[iv.length + encryptedBytes.length];
         System.arraycopy(iv, 0, combinedIvAndCipherText, 0, iv.length);
@@ -39,9 +39,9 @@ public class EncryptionServiceImplementation implements EncryptionService {
         return Base64.getEncoder().encodeToString(combinedIvAndCipherText);
     }
 
-    public String decryptPassword(String cipherText) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    public String decryptPassword(String cipherPassword) throws NoSuchPaddingException, NoSuchAlgorithmException,
             IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, InvalidKeyException {
-        byte[] decodedCipherText = Base64.getDecoder().decode(cipherText);
+        byte[] decodedCipherText = Base64.getDecoder().decode(cipherPassword);
 
         byte[] iv = new byte[IV_LENGTH_ENCRYPT];
         System.arraycopy(decodedCipherText, 0, iv, 0, iv.length);

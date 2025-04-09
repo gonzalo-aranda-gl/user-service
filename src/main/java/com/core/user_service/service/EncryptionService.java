@@ -9,10 +9,10 @@ import java.security.NoSuchAlgorithmException;
 
 public interface EncryptionService {
 
-    String encryptPassword(String plainText) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    String encryptPassword(String password) throws NoSuchPaddingException, NoSuchAlgorithmException,
             InvalidAlgorithmParameterException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
 
-    String decryptPassword(String cipherText) throws NoSuchPaddingException, NoSuchAlgorithmException,
+    String decryptPassword(String cipherPassword) throws NoSuchPaddingException, NoSuchAlgorithmException,
             IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException, InvalidKeyException;
 
 }

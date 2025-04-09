@@ -16,6 +16,7 @@ java {
 val springdocVersion by extra("1.6.7")
 val mapstructVersion by extra("1.6.3")
 val jwtVersion by extra("0.11.5")
+val gsonVersion by extra("2.12.1")
 
 configurations {
 	compileOnly {
@@ -38,6 +39,8 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:${jwtVersion}")
 	implementation("io.jsonwebtoken:jjwt-impl:${jwtVersion}")
 	implementation("io.jsonwebtoken:jjwt-jackson:${jwtVersion}")
+	implementation("com.google.code.gson:gson:${gsonVersion}")
+	testImplementation("org.projectlombok:lombok:1.18.26")
 	compileOnly("org.projectlombok:lombok")
 	runtimeOnly("com.h2database:h2")
 	annotationProcessor("org.projectlombok:lombok")

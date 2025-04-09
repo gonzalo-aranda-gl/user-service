@@ -1,4 +1,4 @@
-CREATE TABLE user (
+CREATE TABLE IF NOT EXISTS user (
     id VARCHAR(36) NOT NULL UNIQUE,
     name VARCHAR(255),
     email VARCHAR(255) NOT NULL UNIQUE,
@@ -10,7 +10,7 @@ CREATE TABLE user (
     PRIMARY KEY(id)
 );
 
-CREATE TABLE phone (
+CREATE TABLE IF NOT EXISTS phone (
     id VARCHAR(36) NOT NULL UNIQUE,
     number int,
     city_code int,

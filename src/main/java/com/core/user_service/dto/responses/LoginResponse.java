@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @Builder
@@ -20,7 +19,7 @@ import java.util.UUID;
 @JsonPropertyOrder({"id", "created", "lastLogin", "token", "isActive", "name", "email", "password", "phones"})
 public class LoginResponse {
 
-  private UUID id;
+  private String id;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yy HH:mm:ss")
   private LocalDateTime created;
@@ -30,8 +29,7 @@ public class LoginResponse {
 
   private String token;
 
-  @JsonProperty("isActive")
-  private boolean isActive;
+  private String isActive;
 
   private String name;
 
